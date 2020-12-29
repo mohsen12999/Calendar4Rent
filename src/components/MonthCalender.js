@@ -1,17 +1,25 @@
 import React from "react";
 import jalaali from "jalaali-js";
+import { PERSIAN_WEEK_DAYS, PERSIAN_MONTHS } from "../shared/constants";
 
-const MonthCalender = () => {
-  const jToday = jalaali.toJalaali(new Date());
+// position: 0 current month, 1 next months, -1 prev month
+const MonthCalender = ({
+  year,
+  month,
+  position,
+  showDayTitle = true,
+  showFullDayTitle = false,
+}) => {
+  // const jToday = jalaali.toJalaali(new Date());
 
-  const firstDayOfMonth = jalaali.toGregorian(jToday.jy, jToday.jm, 1);
+  const firstDayOfMonth = jalaali.toGregorian(year, month, 1);
   const firstDayOfMonthDayOfWeek = new Date(
     firstDayOfMonth.gy,
     firstDayOfMonth.gm,
     firstDayOfMonth.gd
   ).getDay();
 
-  const monthLength = jalaali.jalaaliMonthLength(jToday.jy, jToday.jm);
+  const monthLength = jalaali.jalaaliMonthLength(year, month);
 
   const dayArray = Array.from(
     { length: Math.ceil((monthLength + firstDayOfMonthDayOfWeek) / 7) },
@@ -22,20 +30,15 @@ const MonthCalender = () => {
       })
   );
 
-  const showDayTitle = true;
-
   return (
     <table style={{ direction: "rtl" }}>
+      <caption>{PERSIAN_MONTHS[month - 1] + " " + year}</caption>
       {showDayTitle && (
         <thead>
           <tr>
-            <th>شنبه</th>
-            <th>یکشنبه</th>
-            <th>دوشنبه</th>
-            <th>سه‌شنبه</th>
-            <th>چهارشنبه</th>
-            <th>پنجشنبه</th>
-            <th>جمعه</th>
+            {PERSIAN_WEEK_DAYS.map((d) => (
+              <th>{showFullDayTitle ? d.name : d.short}</th>
+            ))}
           </tr>
         </thead>
       )}
