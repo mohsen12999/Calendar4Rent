@@ -1,11 +1,12 @@
-# Calender4Rent
+# Calendar4Rent
 
-- make a calender for renting span with start and end date
+- make a calender for renting Business that have start and end date.
 
 ## todo
 
-- [ ] Make table of day
-- [ ] add month name
+- [x] Make table of day
+- [x] add month name
+- [x] add persian font
 - [ ] show today
 - [ ] go to next month
 - [ ] show to month
@@ -19,7 +20,7 @@
 - [ ] choose month count [1,2,3,...]
 - [ ] add hover effect for change month, come from and go out
 
-## Refrence
+## Reference
 
 - https://github.com/jalaali/jalaali-js
 - https://www.npmjs.com/package/jalali-moment
