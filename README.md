@@ -7,11 +7,11 @@
 - [x] Make table of day
 - [x] add month name
 - [x] add persian font
-- [ ] show today
-- [ ] go to next month
-- [ ] show to month
+- [x] show today
+- [x] go to next month
 - [ ] choose one day
 - [ ] choose second day - show the span between them
+- [ ] choose second day - show the span between them dynamically
 - [ ] add events
 - [ ] add theme
 - [ ] show holidays

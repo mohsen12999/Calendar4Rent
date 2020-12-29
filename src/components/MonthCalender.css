@@ -1,0 +1,21 @@
+.month-table {
+  direction: rtl;
+}
+
+td {
+  text-align: center;
+}
+
+td.active {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+td.today {
+  background-color: gray;
+  border-radius: 50%;
+}
+
+td.disable {
+  color: gray;
+}

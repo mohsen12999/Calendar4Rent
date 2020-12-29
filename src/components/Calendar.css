@@ -1,0 +1,15 @@
+.root-calendar {
+  direction: rtl;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.change-month-btn {
+  cursor: pointer;
+}
+
+.change-month-btn:hover {
+  color: red;
+  font-weight: bold;
+}

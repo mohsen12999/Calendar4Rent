@@ -2,11 +2,15 @@ import React from "react";
 import jalaali from "jalaali-js";
 import { PERSIAN_WEEK_DAYS, PERSIAN_MONTHS } from "../shared/constants";
 
+import "./MonthCalender.css";
+
 // position: 0 current month, 1 next months, -1 prev month
 const MonthCalender = ({
   year,
   month,
-  position,
+  today,
+  startDay,
+  endDay,
   showDayTitle = true,
   showFullDayTitle = false,
 }) => {
@@ -31,7 +35,7 @@ const MonthCalender = ({
   );
 
   return (
-    <table style={{ direction: "rtl" }}>
+    <table className="month-table">
       <caption>{PERSIAN_MONTHS[month - 1] + " " + year}</caption>
       {showDayTitle && (
         <thead>
@@ -46,7 +50,21 @@ const MonthCalender = ({
         {dayArray.map((weekArray) => (
           <tr>
             {weekArray.map((day) => (
-              <td>{day > 0 ? day : ""}</td>
+              <td
+                className={
+                  year < today.jy ||
+                  (year === today.jy && month < today.jm) ||
+                  (year === today.jy && month === today.jm && day < today.jd)
+                    ? "disable"
+                    : year === today.jy &&
+                      month === today.jm &&
+                      day === today.jd
+                    ? "today"
+                    : "active"
+                }
+              >
+                {day > 0 ? day : ""}
+              </td>
             ))}
           </tr>
         ))}

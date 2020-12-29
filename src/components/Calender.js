@@ -3,11 +3,16 @@ import jalaali from "jalaali-js";
 
 import MonthCalender from "./MonthCalender";
 
-const Calender = () => {
-  const jToday = jalaali.toJalaali(new Date());
+import "./Calendar.css";
 
-  const [currentYear, setCurrentYear] = React.useState(jToday.jy);
-  const [currentMonth, setCurrentMonth] = React.useState(jToday.jm);
+const Calender = () => {
+  const today = jalaali.toJalaali(new Date());
+
+  const [currentYear, setCurrentYear] = React.useState(today.jy);
+  const [currentMonth, setCurrentMonth] = React.useState(today.jm);
+
+  const [startDay, setStartDay] = React.useState();
+  const [endDay, setEndDay] = React.useState();
 
   const increaseMonth = () => {
     const newMonth = currentMonth + 1;
@@ -30,28 +35,26 @@ const Calender = () => {
   };
 
   return (
-    <div
-      style={{
-        direction: "rtl",
-        display: "flex",
-        justifyContent: "space-around",
-      }}
-    >
-      <span onClick={() => decreaseMonth()} style={{ cursor: "pointer" }}>
+    <div className="root-calendar">
+      <span onClick={() => decreaseMonth()} className="change-month-btn">
         &lt;&lt;
       </span>
       <MonthCalender
         year={currentYear}
         month={currentMonth}
-        position={0}
         showFullDayTitle={true}
+        today={today}
+        startDay={startDay}
+        endDay={endDay}
       />
       <MonthCalender
         year={currentMonth === 12 ? currentYear + 1 : currentYear}
         month={currentMonth === 12 ? 1 : currentMonth + 1}
-        position={1}
+        today={today}
+        startDay={startDay}
+        endDay={endDay}
       />
-      <span onClick={() => increaseMonth()} style={{ cursor: "pointer" }}>
+      <span onClick={() => increaseMonth()} className="change-month-btn">
         &gt;&gt;
       </span>
     </div>
