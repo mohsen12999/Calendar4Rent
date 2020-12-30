@@ -35,28 +35,48 @@ const Calender = () => {
   };
 
   return (
-    <div className="root-calendar">
-      <span onClick={() => decreaseMonth()} className="change-month-btn">
-        &lt;&lt;
-      </span>
-      <MonthCalender
-        year={currentYear}
-        month={currentMonth}
-        showFullDayTitle={true}
-        today={today}
-        startDay={startDay}
-        endDay={endDay}
-      />
-      <MonthCalender
-        year={currentMonth === 12 ? currentYear + 1 : currentYear}
-        month={currentMonth === 12 ? 1 : currentMonth + 1}
-        today={today}
-        startDay={startDay}
-        endDay={endDay}
-      />
-      <span onClick={() => increaseMonth()} className="change-month-btn">
-        &gt;&gt;
-      </span>
+    <div>
+      <div className="root-calendar">
+        <span onClick={() => decreaseMonth()} className="change-month-btn">
+          &lt;&lt;
+        </span>
+        <MonthCalender
+          year={currentYear}
+          month={currentMonth}
+          showFullDayTitle={true}
+          today={today}
+          startDay={startDay}
+          endDay={endDay}
+          ChooseStartDay={(day) => setStartDay(day)}
+        />
+        <MonthCalender
+          year={currentMonth === 12 ? currentYear + 1 : currentYear}
+          month={currentMonth === 12 ? 1 : currentMonth + 1}
+          today={today}
+          startDay={startDay}
+          endDay={endDay}
+          ChooseStartDay={(day) => setStartDay(day)}
+        />
+        <span onClick={() => increaseMonth()} className="change-month-btn">
+          &gt;&gt;
+        </span>
+      </div>
+      <div style={{ textAlign: "center", direction: "rtl" }}>
+        <p>امروز: {today.jy + "/" + today.jm + "/" + today.jd}</p>
+        <p>
+          روز شروع:{" "}
+          {startDay
+            ? startDay.jy + "/" + startDay.jm + "/" + startDay.jd
+            : "انتخاب نشده"}
+        </p>
+        <p>
+          روز پایان:{" "}
+          {endDay
+            ? endDay.jy + "/" + endDay.jm + "/" + endDay.jd
+            : "انتخاب نشده"}
+        </p>
+        <p>تعداد روز های انتخابی: {startDay && endDay ? "" : "0"}</p>
+      </div>
     </div>
   );
 };
