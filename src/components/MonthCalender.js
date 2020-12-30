@@ -13,6 +13,7 @@ const MonthCalender = ({
   endDay,
   showDayTitle = true,
   showFullDayTitle = false,
+  ChooseDay,
 }) => {
   // const jToday = jalaali.toJalaali(new Date());
 
@@ -34,34 +35,59 @@ const MonthCalender = ({
       })
   );
 
+  const tdClassName = (day) => {
+    const isActiveClass =
+      year < today.jy ||
+      (year === today.jy && month < today.jm) ||
+      (year === today.jy && month === today.jm && day < today.jd)
+        ? "disable"
+        : "active";
+
+    const isTodayClass =
+      year === today.jy && month === today.jm && day === today.jd
+        ? " today"
+        : "";
+
+    const chooseDayClass =
+      (startDay &&
+        year === startDay.jy &&
+        month === startDay.jm &&
+        day === startDay.jd) ||
+      (endDay && year === endDay.jy && month === endDay.jm && day === endDay.jd)
+        ? " chooseDay"
+        : "";
+
+    return isActiveClass + isTodayClass + chooseDayClass;
+  };
+
+  const clickDay = (e, day) => {
+    const selectedDay = { jy: year, jm: month, jd: day };
+    var className = e.target.className;
+    if (className.includes("active")) {
+      ChooseDay(selectedDay);
+    }
+  };
+
   return (
     <table className="month-table">
       <caption>{PERSIAN_MONTHS[month - 1] + " " + year}</caption>
       {showDayTitle && (
         <thead>
           <tr>
-            {PERSIAN_WEEK_DAYS.map((d) => (
-              <th>{showFullDayTitle ? d.name : d.short}</th>
+            {PERSIAN_WEEK_DAYS.map((d, index) => (
+              <th key={index}>{showFullDayTitle ? d.name : d.short}</th>
             ))}
           </tr>
         </thead>
       )}
       <tbody>
-        {dayArray.map((weekArray) => (
-          <tr>
-            {weekArray.map((day) => (
+        {dayArray.map((weekArray, week_index) => (
+          <tr key={week_index}>
+            {weekArray.map((day, day_index) => (
               <td
-                className={
-                  year < today.jy ||
-                  (year === today.jy && month < today.jm) ||
-                  (year === today.jy && month === today.jm && day < today.jd)
-                    ? "disable"
-                    : year === today.jy &&
-                      month === today.jm &&
-                      day === today.jd
-                    ? "today"
-                    : "active"
-                }
+                key={day_index}
+                onClick={(e) => clickDay(e, day)}
+                className={tdClassName(day)}
               >
                 {day > 0 ? day : ""}
               </td>

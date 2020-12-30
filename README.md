@@ -9,8 +9,8 @@
 - [x] add persian font
 - [x] show today
 - [x] go to next month
-- [ ] choose one day
-- [ ] choose second day - show the span between them
+- [x] choose one day
+- [x] choose second day - show the span between them
 - [ ] choose second day - show the span between them dynamically
 - [ ] add events
 - [ ] add theme

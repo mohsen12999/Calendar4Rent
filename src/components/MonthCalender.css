@@ -6,6 +6,10 @@ td {
   text-align: center;
 }
 
+td:hover {
+  background-color: lightblue;
+}
+
 td.active {
   font-weight: bold;
   cursor: pointer;
@@ -18,4 +22,9 @@ td.today {
 
 td.disable {
   color: gray;
+}
+
+td.chooseDay {
+  background-color: aqua;
+  border-radius: 50%;
 }
