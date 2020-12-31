@@ -36,6 +36,10 @@ const MonthCalender = ({
   );
 
   const tdClassName = (day) => {
+    if (day === 0) {
+      return "emptyDay";
+    }
+
     const isActiveClass =
       year < today.jy ||
       (year === today.jy && month < today.jm) ||
@@ -64,14 +68,55 @@ const MonthCalender = ({
     const selectedDate =
       startDay &&
       endDay &&
+      ((endDay.jy === startDay.jy &&
+        endDay.jy === year &&
+        endDay.jm === startDay.jm &&
+        endDay.jm === month &&
+        day > startDay.jd &&
+        day < endDay.jd) ||
+        (endDay.jy === startDay.jy &&
+          endDay.jy === year &&
+          endDay.jm !== startDay.jm &&
+          ((month > startDay.jm && month < endDay.jm) ||
+            (month === startDay.jm && day > startDay.jd) ||
+            (month === endDay.jm && day < endDay.jd))) ||
+        (endDay.jy !== startDay.jy &&
+          ((year > startDay.jy && year < endDay.year) ||
+            (year === startDay.jy &&
+              (month > startDay.jm ||
+                (month === startDay.jm && day > startDay.jd))) ||
+            (year === endDay.jy &&
+              (month < endDay.jm ||
+                (month === endDay.jm && day < endDay.jd))))))
+        ? " selectedDay"
+        : "";
+
+    /*
+    const allInSameMonth =
       endDay.jy === startDay.jy &&
       endDay.jy === year &&
       endDay.jm === startDay.jm &&
       endDay.jm === month &&
       day > startDay.jd &&
-      day < endDay.jd
-        ? " selectedDay"
-        : "";
+      day < endDay.jd;
+
+    const sameYear =
+      endDay.jy === startDay.jy &&
+      endDay.jy === year &&
+      endDay.jm !== startDay.jm &&
+      ((month > startDay.jm && month < endDay.jm) ||
+        (month === startDay.jm && day > startDay.jd) ||
+        (month === endDay.jm && day < endDay.jd));
+
+    const differenceYear =
+      endDay.jy !== startDay.jy &&
+      ((year > startDay.jy && year < endDay.year) ||
+        (year === startDay.jy &&
+          (month > startDay.jm ||
+            (month === startDay.jm && day > startDay.jd))) ||
+        (year === endDay.jy &&
+          (month < endDay.jm || (month === endDay.jm && day < endDay.jd))));
+          */
 
     return isActiveClass + isTodayClass + chooseDayClass + selectedDate;
   };
