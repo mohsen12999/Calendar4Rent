@@ -19,6 +19,9 @@
 - [ ] show another data in day tile
 - [ ] choose month count [1,2,3,...]
 - [ ] add hover effect for change month, come from and go out
+- [ ] add test
+- [ ] rewrite with typescript
+- [ ] make it as a module
 
 ## Reference
 
