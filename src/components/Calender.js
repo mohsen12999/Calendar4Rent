@@ -66,6 +66,72 @@ const Calender = () => {
     setEndDay(undefined);
   };
 
+  const CalculateChooseDays = () => {
+    // not choose start or end day
+    if (!startDay || !endDay) {
+      return "روزها را انتخاب کنید!";
+    }
+
+    // two day in one month
+    if (endDay.jy === startDay.jy && endDay.jm === startDay.jm) {
+      return endDay.jd - startDay.jd;
+    }
+
+    // two day in two month in row in same year
+    if (endDay.jy === startDay.jy && endDay.jm === startDay.jm + 1) {
+      return (
+        jalaali.jalaaliMonthLength(startDay.jy, startDay.jm) -
+        startDay.jd +
+        endDay.jd
+      );
+    }
+
+    // two day in two month in row in next year
+    if (
+      endDay.jy === startDay.jy + 1 &&
+      endDay.jm === 1 &&
+      startDay.jm === 12
+    ) {
+      return (
+        jalaali.jalaaliMonthLength(startDay.jy, startDay.jm) -
+        startDay.jd +
+        endDay.jd
+      );
+    }
+
+    if (
+      endDay.jy > startDay.jy ||
+      (endDay.jy === startDay.jy && endDay.jm > startDay.jm)
+    ) {
+      let days =
+        jalaali.jalaaliMonthLength(startDay.jy, startDay.jm) - startDay.jd;
+
+      if (startDay.jy === endDay.jy) {
+        for (let index = startDay.jm + 1; index < endDay.jm; index++) {
+          days += jalaali.jalaaliMonthLength(startDay.jy, index);
+        }
+      } else {
+        // remain day of year of start day
+        for (let index = startDay.jm + 1; index <= 12; index++) {
+          days += jalaali.jalaaliMonthLength(startDay.jy, index);
+        }
+
+        // between years day
+        for (let index = startDay.jy + 1; index < endDay.jy; index++) {
+          days += jalaali.isLeapJalaaliYear() ? 366 : 365;
+        }
+
+        // days from start day
+        for (let index = 1; index < endDay.jm; index++) {
+          days += jalaali.jalaaliMonthLength(endDay.jy, index);
+        }
+      }
+      days += endDay.jd;
+      return days;
+    }
+    return 0;
+  };
+
   return (
     <div>
       <div className="root-calendar">
@@ -107,18 +173,7 @@ const Calender = () => {
             ? endDay.jy + "/" + endDay.jm + "/" + endDay.jd
             : "انتخاب نشده"}
         </p>
-        <p>
-          تعداد روز های انتخابی:{" "}
-          {!startDay || !endDay
-            ? "روزها را انتخاب کنید!"
-            : startDay.jy === endDay.jy && startDay.jm === endDay.jm
-            ? endDay.jd - startDay.jd
-            : startDay.jy === endDay.jy && startDay.jm + 1 === endDay.jm
-            ? jalaali.jalaaliMonthLength(startDay.jy, startDay.jm) -
-              startDay.jd +
-              endDay.jd
-            : ""}
-        </p>
+        <p>تعداد روز های انتخابی: {CalculateChooseDays()}</p>
       </div>
     </div>
   );
