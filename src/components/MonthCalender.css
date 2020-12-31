@@ -26,5 +26,16 @@ td.disable {
 
 td.chooseDay {
   background-color: aqua;
-  border-radius: 50%;
+}
+
+td.startDay {
+  border-radius: 0 50% 50% 0;
+}
+
+td.endDay {
+  border-radius: 50% 0 0 50%;
+}
+
+td.selectedDay {
+  background-color: aquamarine;
 }

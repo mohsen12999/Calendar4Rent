@@ -49,15 +49,31 @@ const MonthCalender = ({
         : "";
 
     const chooseDayClass =
-      (startDay &&
-        year === startDay.jy &&
-        month === startDay.jm &&
-        day === startDay.jd) ||
-      (endDay && year === endDay.jy && month === endDay.jm && day === endDay.jd)
-        ? " chooseDay"
+      startDay &&
+      year === startDay.jy &&
+      month === startDay.jm &&
+      day === startDay.jd
+        ? " chooseDay startDay"
+        : endDay &&
+          year === endDay.jy &&
+          month === endDay.jm &&
+          day === endDay.jd
+        ? " chooseDay endDay"
         : "";
 
-    return isActiveClass + isTodayClass + chooseDayClass;
+    const selectedDate =
+      startDay &&
+      endDay &&
+      endDay.jy === startDay.jy &&
+      endDay.jy === year &&
+      endDay.jm === startDay.jm &&
+      endDay.jm === month &&
+      day > startDay.jd &&
+      day < endDay.jd
+        ? " selectedDay"
+        : "";
+
+    return isActiveClass + isTodayClass + chooseDayClass + selectedDate;
   };
 
   const clickDay = (e, day) => {
