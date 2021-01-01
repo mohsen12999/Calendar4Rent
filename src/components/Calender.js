@@ -5,7 +5,7 @@ import MonthCalender from "./MonthCalender";
 
 import "./Calendar.css";
 
-const Calender = () => {
+const Calender = ({ monthCount = 2, showFullDayTitle = true }) => {
   const today = jalaali.toJalaali(new Date());
 
   const [currentYear, setCurrentYear] = React.useState(today.jy);
@@ -138,23 +138,24 @@ const Calender = () => {
         <span onClick={() => decreaseMonth()} className="change-month-btn">
           &lt;&lt;
         </span>
-        <MonthCalender
-          year={currentYear}
-          month={currentMonth}
-          showFullDayTitle={true}
-          today={today}
-          startDay={startDay}
-          endDay={endDay}
-          ChooseDay={ChooseDay}
-        />
-        <MonthCalender
-          year={currentMonth === 12 ? currentYear + 1 : currentYear}
-          month={currentMonth === 12 ? 1 : currentMonth + 1}
-          today={today}
-          startDay={startDay}
-          endDay={endDay}
-          ChooseDay={ChooseDay}
-        />
+
+        {Array.from({ length: monthCount }, (_, i) => i).map((index) => (
+          <MonthCalender
+            key={index}
+            year={currentMonth + index > 12 ? currentYear + 1 : currentYear}
+            month={
+              currentMonth + index > 12
+                ? currentMonth + index - 12
+                : currentMonth + index
+            }
+            showFullDayTitle={showFullDayTitle}
+            today={today}
+            startDay={startDay}
+            endDay={endDay}
+            ChooseDay={ChooseDay}
+          />
+        ))}
+
         <span onClick={() => increaseMonth()} className="change-month-btn">
           &gt;&gt;
         </span>

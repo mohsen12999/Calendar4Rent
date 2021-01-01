@@ -13,11 +13,12 @@
 - [x] choose second day - show the span between them
 - [ ] choose second day - show the span between them dynamically
 - [ ] add events
+- [ ] make it as a pop over (as a input datetime picker)
 - [ ] add theme
 - [ ] show holidays
 - [ ] show special day
 - [ ] show another data in day tile
-- [ ] choose month count [1,2,3,...]
+- [x] choose month count [1,2,3,...]
 - [ ] add hover effect for change month, come from and go out
 - [ ] add test
 - [ ] rewrite with typescript
