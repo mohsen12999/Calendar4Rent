@@ -5,7 +5,7 @@ import MonthCalender from "./MonthCalender";
 
 import "./Calendar.css";
 
-const Calender = ({ monthCount = 2, showFullDayTitle = true }) => {
+const Calender = ({ monthCount = 2, showFullDayTitle = true, onChangeDay }) => {
   const today = jalaali.toJalaali(new Date());
 
   const [currentYear, setCurrentYear] = React.useState(today.jy);
@@ -13,6 +13,11 @@ const Calender = ({ monthCount = 2, showFullDayTitle = true }) => {
 
   const [startDay, setStartDay] = React.useState();
   const [endDay, setEndDay] = React.useState();
+
+  React.useEffect(() => {
+    onChangeDay(startDay, endDay, CalculateChooseDays());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startDay, endDay]);
 
   const increaseMonth = () => {
     const newMonth = currentMonth + 1;
@@ -69,7 +74,7 @@ const Calender = ({ monthCount = 2, showFullDayTitle = true }) => {
   const CalculateChooseDays = () => {
     // not choose start or end day
     if (!startDay || !endDay) {
-      return "روزها را انتخاب کنید!";
+      return undefined;
     }
 
     // two day in one month
@@ -159,22 +164,6 @@ const Calender = ({ monthCount = 2, showFullDayTitle = true }) => {
         <span onClick={() => increaseMonth()} className="change-month-btn">
           &gt;&gt;
         </span>
-      </div>
-      <div style={{ textAlign: "center", direction: "rtl" }}>
-        <p>امروز: {today.jy + "/" + today.jm + "/" + today.jd}</p>
-        <p>
-          روز شروع:{" "}
-          {startDay
-            ? startDay.jy + "/" + startDay.jm + "/" + startDay.jd
-            : "انتخاب نشده"}
-        </p>
-        <p>
-          روز پایان:{" "}
-          {endDay
-            ? endDay.jy + "/" + endDay.jm + "/" + endDay.jd
-            : "انتخاب نشده"}
-        </p>
-        <p>تعداد روز های انتخابی: {CalculateChooseDays()}</p>
       </div>
     </div>
   );
