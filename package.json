@@ -1,8 +1,8 @@
 {
-  "name": "calender4rent",
+  "name": "calendar4rent",
   "version": "0.5.0",
   "private": true,
-  "homepage": "http://mohsen12999.github.io/calender4rent",
+  "homepage": "https://mohsen12999.github.io/calendar4rent",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
