@@ -16,6 +16,7 @@ const MonthCalender = ({
   ChooseDay,
 }) => {
   // const jToday = jalaali.toJalaali(new Date());
+  // const [hoverDay, setHoverDay] = React.useState();
 
   const firstDayOfMonth = jalaali.toGregorian(year, month, 1);
   const firstDayOfMonthDayOfWeek = new Date(
@@ -129,6 +130,70 @@ const MonthCalender = ({
     }
   };
 
+  const handleMouseEnter = (e) => {
+    if (!startDay || endDay) {
+      return false;
+    }
+
+    const ele = e.target;
+    const classList = ele.classList;
+    if (!classList.contains("active")) {
+      return false;
+    }
+
+    const hoverDay = {
+      jy: Number(ele.dataset["year"]),
+      jm: Number(ele.dataset["month"]),
+      jd: Number(ele.dataset["day"]),
+    };
+
+    // setHoverDay(hoverDay);
+
+    const tds = document.querySelectorAll("td.active");
+
+    if (
+      hoverDay.jy > startDay.jy ||
+      hoverDay.jm > startDay.jm ||
+      hoverDay.jd > startDay.jd
+    ) {
+      // hover is bigger than startDay
+      const filteredTds = [...tds].filter(
+        (td) =>
+          (hoverDay.jm === startDay.jm &&
+            hoverDay.jm === Number(td.dataset["month"]) &&
+            hoverDay.jd > Number(td.dataset["day"]) &&
+            Number(td.dataset["day"]) > startDay.jd) ||
+          (hoverDay.jm !== startDay.jm &&
+            ((hoverDay.jm === Number(td.dataset["month"]) &&
+              Number(td.dataset["day"]) < hoverDay.jd) ||
+              (startDay.jm === Number(td.dataset["month"]) &&
+                Number(td.dataset["day"]) > startDay.jd)))
+      );
+
+      filteredTds.map((td) => td.classList.add("hoverSelectedDay"));
+    } else {
+      // hover is smaller than startDay
+      const filteredTds = [...tds].filter(
+        (td) =>
+          (hoverDay.jm === startDay.jm &&
+            hoverDay.jm === Number(td.dataset["month"]) &&
+            hoverDay.jd < Number(td.dataset["day"]) &&
+            Number(td.dataset["day"]) < startDay.jd) ||
+          (hoverDay.jm !== startDay.jm &&
+            ((hoverDay.jm === Number(td.dataset["month"]) &&
+              Number(td.dataset["day"]) > hoverDay.jd) ||
+              (startDay.jm === Number(td.dataset["month"]) &&
+                Number(td.dataset["day"]) < startDay.jd)))
+      );
+      filteredTds.map((td) => td.classList.add("hoverSelectedDay"));
+    }
+  };
+
+  const handleMouseLeave = (e) => {
+    const tds = document.querySelectorAll("td.active");
+    [...tds].map((td) => td.classList.remove("hoverSelectedDay"));
+  };
+
   return (
     <table className="month-table">
       <caption>{PERSIAN_MONTHS[month - 1] + " " + year}</caption>
@@ -149,6 +214,11 @@ const MonthCalender = ({
                 key={day_index}
                 onClick={(e) => clickDay(e, day)}
                 className={tdClassName(day)}
+                data-day={day}
+                data-month={month}
+                data-year={year}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {day > 0 ? day : ""}
               </td>

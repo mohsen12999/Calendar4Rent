@@ -39,3 +39,7 @@ td.endDay {
 td.selectedDay {
   background-color: aquamarine;
 }
+
+td.hoverSelectedDay {
+  background-color: lightgray;
+}
