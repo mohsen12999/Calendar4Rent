@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/calender4rent/static/css/main.17f8bbeb.chunk.css",
-    "main.js": "/calender4rent/static/js/main.850c9a0d.chunk.js",
-    "main.js.map": "/calender4rent/static/js/main.850c9a0d.chunk.js.map",
-    "runtime-main.js": "/calender4rent/static/js/runtime-main.021492d3.js",
-    "runtime-main.js.map": "/calender4rent/static/js/runtime-main.021492d3.js.map",
-    "static/js/2.8e0d46b9.chunk.js": "/calender4rent/static/js/2.8e0d46b9.chunk.js",
-    "static/js/2.8e0d46b9.chunk.js.map": "/calender4rent/static/js/2.8e0d46b9.chunk.js.map",
-    "static/js/3.6a95efb8.chunk.js": "/calender4rent/static/js/3.6a95efb8.chunk.js",
-    "static/js/3.6a95efb8.chunk.js.map": "/calender4rent/static/js/3.6a95efb8.chunk.js.map",
-    "index.html": "/calender4rent/index.html",
-    "static/css/main.17f8bbeb.chunk.css.map": "/calender4rent/static/css/main.17f8bbeb.chunk.css.map",
-    "static/js/2.8e0d46b9.chunk.js.LICENSE.txt": "/calender4rent/static/js/2.8e0d46b9.chunk.js.LICENSE.txt"
+    "main.css": "/calendar4rent/static/css/main.17f8bbeb.chunk.css",
+    "main.js": "/calendar4rent/static/js/main.850c9a0d.chunk.js",
+    "main.js.map": "/calendar4rent/static/js/main.850c9a0d.chunk.js.map",
+    "runtime-main.js": "/calendar4rent/static/js/runtime-main.4ca220b5.js",
+    "runtime-main.js.map": "/calendar4rent/static/js/runtime-main.4ca220b5.js.map",
+    "static/js/2.8e0d46b9.chunk.js": "/calendar4rent/static/js/2.8e0d46b9.chunk.js",
+    "static/js/2.8e0d46b9.chunk.js.map": "/calendar4rent/static/js/2.8e0d46b9.chunk.js.map",
+    "static/js/3.6a95efb8.chunk.js": "/calendar4rent/static/js/3.6a95efb8.chunk.js",
+    "static/js/3.6a95efb8.chunk.js.map": "/calendar4rent/static/js/3.6a95efb8.chunk.js.map",
+    "index.html": "/calendar4rent/index.html",
+    "static/css/main.17f8bbeb.chunk.css.map": "/calendar4rent/static/css/main.17f8bbeb.chunk.css.map",
+    "static/js/2.8e0d46b9.chunk.js.LICENSE.txt": "/calendar4rent/static/js/2.8e0d46b9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.021492d3.js",
+    "static/js/runtime-main.4ca220b5.js",
     "static/js/2.8e0d46b9.chunk.js",
     "static/css/main.17f8bbeb.chunk.css",
     "static/js/main.850c9a0d.chunk.js"
